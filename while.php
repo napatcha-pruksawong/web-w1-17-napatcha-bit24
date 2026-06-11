@@ -24,7 +24,7 @@
         .container {
             background-color: #ffffff; 
             width: 100%;
-            max-width: 550px; 
+            max-width: 550px;
             margin: 40px 20px; 
             padding: 40px; 
             border-radius: 24px; 
@@ -118,6 +118,7 @@
             color: #4a3f35;
         }
 
+        /* เอฟเฟกต์ตอนคลิกช่องกรอกตัวเลขให้เรืองแสงสวยๆ */
         input[type="number"]:focus {
             border-color: #b19e8f;
             box-shadow: 0 0 0 4px rgba(177, 158, 143, 0.15);
@@ -143,7 +144,11 @@
             transform: translateY(-1px);
         }
 
-        
+        input[type="submit"]:active {
+            transform: translateY(1px);
+        }
+
+
         .result-box {
             margin-top: 30px;
             background-color: #ffffff;
@@ -167,7 +172,6 @@
             letter-spacing: 1px;
         }
 
-        
         .result-row {
             padding: 10px 20px;
             font-size: 1.1rem;
@@ -182,10 +186,12 @@
             border-bottom: none;
         }
 
+        
         .result-row:nth-child(even) {
             background-color: #faf8f5;
         }
 
+        
         .result-row:hover {
             background-color: #f1ede6;
         }
@@ -199,11 +205,12 @@
     <div class="sub-title">BIT2/4 ชั้นปีที่ 2 เลขที่ 17</div>
     
     <div style="text-align: center; margin-bottom: 10px;">
-        <a href="while.php" class="nav-link">whileloop</a>
+        <a href="index.php" class="nav-link">forloop</a>
     </div>
 
     <form action="" class="form-group">
         <label for="num">เลขแม่สูตรคูณ</label>
+        <label for="num"></label>
         <div class="input-row">
             <input type="number" name="num" id="num" placeholder="กรอกตัวเลข..." required value="<?php echo isset($_GET['num']) ? htmlspecialchars($_GET['num']) : ''; ?>">
             <input type="submit" value="คำนวณ">
@@ -212,13 +219,16 @@
 
     <?php
         if(isset($_GET["num"]) && $_GET["num"] !== ""){
-            $num = $_GET["num"] ;
+            $num = intval($_GET["num"]);
 
             echo "<div class='result-box'>";
-            echo "<div class='result-title'>สูตรคูณแม่ " . $num . "</div>" ;
+            echo "<div class='result-title'>ตารางสูตรคูณแม่ " . $num . "</div>" ;
 
-            for($i = 1; $i <= 12 ; $i++){
-                echo "<div class='result-row'>" . $num . " x " . $i . " = " . $num * $i . "</div>" ;
+            $i = 9; 
+            while ($i >= 1) { 
+                
+                echo "<div class='result-row'>" . $num . " &times; " . $i . " = " . ($num * $i) . "</div>";
+                $i--;
             }
 
             echo "</div>";
